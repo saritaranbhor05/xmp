@@ -10,3 +10,4 @@ XMP::Silencer.silently {
 require 'xmp'
 
 require 'pp'
+require 'exifr/jpeg'

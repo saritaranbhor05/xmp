@@ -6,26 +6,26 @@ describe XMP do
     before { @xmp = XMP.new(File.read('spec/fixtures/xmp.xml')) }
 
     it "should return all namespace names" do
-      @xmp.namespaces.should =~ %w{rdf x tiff exif xap aux Iptc4xmpCore photoshop crs dc}
+      expect(@xmp.namespaces.sort).to match %w{rdf x tiff exif xap aux Iptc4xmpCore photoshop crs dc}.sort
     end
 
     it "should return standalone attribute" do
-      @xmp.dc.title.should eq(['Tytuł zdjęcia'])
-      @xmp.dc.subject.should eq(['Słowa kluczowe i numery startowe.'])
-      @xmp.photoshop.SupplementalCategories.should eq(['Nazwa imprezy'])
+      expect(@xmp.dc.title).to eq(['Tytuł zdjęcia'])
+      expect(@xmp.dc.subject).to eq(['Słowa kluczowe i numery startowe.'])
+      expect(@xmp.photoshop.SupplementalCategories).to eq(['Nazwa imprezy'])
     end
 
     it "should return standalone attribute hash" do
-      @xmp.Iptc4xmpCore.CreatorContactInfo.should eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
+      expect(@xmp.Iptc4xmpCore.CreatorContactInfo).to eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
     end
 
     it "should return embedded attribute" do
-      @xmp.Iptc4xmpCore.Location.should eq('Miejsce')
-      @xmp.photoshop.Category.should eq('Kategoria')
+      expect(@xmp.Iptc4xmpCore.Location).to eq('Miejsce')
+      expect(@xmp.photoshop.Category).to eq('Kategoria')
     end
 
     it "should raise NoMethodError on unknown attribute" do
-      lambda { @xmp.photoshop.UnknownAttribute }.should raise_error(NoMethodError)
+      expect { @xmp.photoshop.UnknownAttribute }.to raise_error(NoMethodError)
     end
 
     describe "namespace 'tiff'" do
@@ -49,17 +49,17 @@ describe XMP do
     before { @xmp = XMP.new(File.read('spec/fixtures/xmp2.xml')) }
 
     it "should return all namespace names" do
-      @xmp.namespaces.should =~ %w{dc iX pdf photoshop rdf tiff x xap xapRights}
+      expect(@xmp.namespaces.sort).to match %w{dc iX pdf photoshop rdf tiff x xap xapRights}.sort
     end
 
     it "should return standalone attribute" do
-      @xmp.dc.creator.should eq(['BenjaminStorrier'])
-      @xmp.dc.subject.should eq(['SAMPLEkeyworddataFromIview'])
+      expect(@xmp.dc.creator).to eq(['BenjaminStorrier'])
+      expect(@xmp.dc.subject).to eq(['SAMPLEkeyworddataFromIview'])
     end
 
     it "should return embedded attribute" do
-      @xmp.photoshop.Headline.should eq('DeniseTestImage')
-      @xmp.photoshop.Credit.should eq('Remco')
+      expect(@xmp.photoshop.Headline).to eq('DeniseTestImage')
+      expect(@xmp.photoshop.Credit).to eq('Remco')
     end
   end
 
@@ -69,13 +69,13 @@ describe XMP do
     before { @xmp = XMP.new(File.read('spec/fixtures/xmp3.xml')) }
 
     it "should return attributes" do
-      @xmp.Iptc4xmpCore.Location.should eq('Phạm Đình Hồ')
-      @xmp.photoshop.City.should eq('Hanoi')
-      @xmp.aux.Lens.should eq('EF24-105mm f/4L IS USM')
+      expect(@xmp.Iptc4xmpCore.Location).to eq('Phạm Đình Hồ')
+      expect(@xmp.photoshop.City).to eq('Hanoi')
+      expect(@xmp.aux.Lens).to eq('EF24-105mm f/4L IS USM')
     end
 
     it "should return standalone attribute hash" do
-      @xmp.Iptc4xmpCore.CreatorContactInfo.should eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
+      expect(@xmp.Iptc4xmpCore.CreatorContactInfo).to eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
     end
 
   end
@@ -85,11 +85,11 @@ describe XMP do
     before { @xmp = XMP.new(File.read('spec/fixtures/xmp4.xml')) }
 
     it "should return dc:format" do
-      @xmp.dc.format.should eq('image/jpeg')
+      expect(@xmp.dc.format).to eq('image/jpeg')
     end
 
     it "should return standalone attribute hash" do
-      @xmp.Iptc4xmpCore.CreatorContactInfo.should eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
+      expect(@xmp.Iptc4xmpCore.CreatorContactInfo).to eq({'CiAdrCtry' => 'Germany', 'CiAdrCity' => 'Berlin'})
     end
 
 

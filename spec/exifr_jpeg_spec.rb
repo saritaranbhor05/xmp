@@ -7,7 +7,7 @@ describe "XMP with EXIFR::JPEG" do
 
   it "should parse image" do
     xmp = XMP.parse(@img)
-    xmp.should be_instance_of(XMP)
-    xmp.namespaces.should =~ %w{dc iX pdf photoshop rdf tiff x xap xapRights}
+    expect(xmp).to be_instance_of(XMP)
+    expect(xmp.namespaces.sort).to match %w{dc iX pdf photoshop rdf tiff x xap xapRights}
   end
 end
