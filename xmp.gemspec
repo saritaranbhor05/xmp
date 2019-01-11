@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = %w(README.rdoc)
 
-  s.add_dependency 'nokogiri', '~>1.8.1'
+  s.add_dependency 'nokogiri', '>=1.8.1'
 
   s.add_development_dependency 'exifr', '>=1.2'
   s.add_development_dependency 'rspec', '~>3.0'
