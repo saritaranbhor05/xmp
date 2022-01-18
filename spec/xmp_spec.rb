@@ -32,7 +32,7 @@ describe XMP do
       before { @namespace = @xmp.tiff }
 
       it "should return all attribute names" do
-        expect(@namespace.attributes).to include *%w{Make Model ImageWidth ImageLength XResolution YResolution ResolutionUnit}
+        expect(@namespace.attributes).to include(*%w{Make Model ImageWidth ImageLength XResolution YResolution ResolutionUnit})
       end
     end
 
@@ -40,7 +40,7 @@ describe XMP do
       before { @namespace = @xmp.photoshop }
 
       it "should return all attribute names" do
-        expect(@namespace.attributes).to include *%w{LegacyIPTCDigest Category SupplementalCategories}
+        expect(@namespace.attributes).to include(*%w{LegacyIPTCDigest Category SupplementalCategories})
       end
     end
   end
